@@ -2,6 +2,11 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+const publicFolderPath = path.resolve(__dirname, './public');
+
+app.use(express.static(publicFolderPath));
+
+
 app.listen(3030, () => {
     console.log('Servidor corriendo puerto 3030')
 })
@@ -46,4 +51,11 @@ app.get('/turing', (req, res) => {
     res.sendFile(htmlPath)
 });
 
-app.use(express.static('public'));
+app.get('/home', (req, res) => {
+    let htmlPath = path.resolve(__dirname, './views/home.html')
+    res.sendFile(htmlPath)
+})
+
+// app.use(express.static('public'));
+
+
